@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Anime & Manga Vault</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(rgba(15, 11, 25, 0.88), rgba(26, 15, 36, 0.94)), 
-                        url('http://googleusercontent.com/image_collection/image_retrieval/15435201623793551224') no-repeat center center fixed;
+            background: linear-gradient(rgba(18, 12, 28, 0.85), rgba(28, 16, 42, 0.93)), 
+                        url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
             color: #eae1f0;
         }
@@ -28,25 +26,24 @@
         }
         /* Frosted glass effect */
         .glass-panel {
-            background: rgba(25, 18, 36, 0.65);
-            backdrop-filter: blur(12px);
+            background: rgba(28, 18, 42, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 183, 197, 0.15);
         }
     </style>
 </head>
 <body class="font-sans min-h-screen flex flex-col tracking-wide">
 
-    <!-- Header / Navbar -->
-    <header class="border-b border-pink-900/30 bg-[#161024]/80 sticky top-0 z-50 backdrop-blur-md">
+    <header class="border-b border-pink-900/30 bg-[#191129]/80 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <span class="text-2xl animate-bounce duration-1000">🌸</span>
+                <span class="text-2xl animate-pulse">🌸</span>
                 <h1 class="text-2xl font-extrabold tracking-widest bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
                     SAKURA VAULT
                 </h1>
             </div>
-            <!-- Navigation Tabs -->
-            <nav class="flex gap-2 bg-[#0e0a17]/90 p-1.5 rounded-xl border border-pink-950/40">
+            <nav class="flex gap-2 bg-[#0e0a17]/95 p-1.5 rounded-xl border border-pink-950/40">
                 <button onclick="switchTab('anime')" id="tab-anime" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all bg-gradient-to-r from-pink-400 to-purple-500 text-white shadow-md shadow-pink-950/40">
                     Anime (<span id="count-anime">0</span>)
                 </button>
@@ -60,46 +57,38 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
         
-        <!-- Tab: Anime -->
         <section id="content-anime" class="tab-content">
             <div class="flex items-center gap-2 mb-6">
-                <i class="fa-solid fa-compact-disc text-pink-400 animate-spin" style="animation-duration: 6s;"></i>
+                <i class="fa-solid fa-compact-disc text-pink-400 animate-spin" style="animation-duration: 8s;"></i>
                 <h2 class="text-xl font-semibold text-pink-200">Collected Tapes</h2>
             </div>
             <div id="anime-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                <!-- JavaScript Injects Visual Cards -->
-            </div>
+                </div>
         </section>
 
-        <!-- Tab: Manga -->
         <section id="content-manga" class="tab-content hidden">
             <div class="flex items-center gap-2 mb-6">
                 <i class="fa-solid fa-book-open text-purple-400"></i>
                 <h2 class="text-xl font-semibold text-purple-200">Shelf Library</h2>
             </div>
             <div id="manga-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                <!-- JavaScript Injects Visual Cards -->
-            </div>
+                </div>
         </section>
 
-        <!-- Tab: Watchlist -->
         <section id="content-watchlist" class="tab-content hidden">
             <div class="flex items-center gap-2 mb-6">
                 <i class="fa-regular fa-heart text-indigo-400 animate-pulse"></i>
                 <h2 class="text-xl font-semibold text-indigo-200">Future Late Nights</h2>
             </div>
             <div id="watchlist-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                <!-- JavaScript Injects Simple Grid -->
-            </div>
+                </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="border-t border-pink-950/20 bg-[#0e0a17]/90 py-6 text-center text-xs text-purple-400/60 tracking-widest">
-        <p>• LO-FI ANIME ARCHIVE v2.0 • ☕ CHILLING IN NIGHT CITY •</p>
+        <p>• LO-FI ANIME ARCHIVE v2.5 • ☕ TAP TO EXPLORE MYANIMELIST •</p>
     </footer>
 
     <script>
@@ -161,20 +150,23 @@
             return { title: cleanTitle.trim(), rank: rank, isPeak: isPeak, tag: customTag };
         }
 
-        // Helper to find aesthetic placeholder matching the media style dynamically
+        // Generates stylized canvas artwork matching the media title structure
         function generateCoverPlaceholder(title) {
-            // Generates a stylized graphic canvas with a unique background color blend based on string signature
             let hash = 0;
             for (let i = 0; i < title.length; i++) { hash = title.charCodeAt(i) + ((hash << 5) - hash); }
             const hue1 = Math.abs(hash % 360);
-            const hue2 = (hue1 + 40) % 360;
-            return `linear-gradient(135deg, hsl(${hue1}, 45%, 25%), hsl(${hue2}, 50%, 15%))`;
+            const hue2 = (hue1 + 50) % 360;
+            return `linear-gradient(135deg, hsl(${hue1}, 40%, 28%), hsl(${hue2}, 45%, 16%))`;
         }
 
         class AestheticMediaCard {
-            constructor(item) {
+            constructor(item, type) {
                 this.parsed = parseTitle(item);
+                this.type = type; // 'anime' or 'manga'
                 this.bgStyle = generateCoverPlaceholder(this.parsed.title);
+                
+                // Construct safe URL encoding for MyAnimeList search links
+                this.malUrl = `https://myanimelist.net/${this.type}.php?q=${encodeURIComponent(this.parsed.title)}`;
             }
 
             render() {
@@ -190,32 +182,29 @@
                 }
 
                 return `
-                    <div class="glass-panel rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-pink-900/10 hover:border-pink-300/40 group flex flex-col h-full">
-                        <!-- Poster Image Frame Area -->
-                        <div class="aspect-[3/4] w-full flex flex-col justify-between p-3 relative relative overflow-hidden" style="background: ${this.bgStyle};">
-                            <!-- Overlay filter mapping lo-fi shadow layout -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#140e1f] via-transparent to-black/30 pointer-events-none"></div>
+                    <a href="${this.malUrl}" target="_blank" rel="noopener noreferrer" 
+                       class="glass-panel rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-pink-900/20 hover:border-pink-300/50 group flex flex-col h-full cursor-pointer">
+                        
+                        <div class="aspect-[3/4] w-full flex flex-col justify-between p-3 relative overflow-hidden" style="background: ${this.bgStyle};">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#161026] via-transparent to-black/20 pointer-events-none"></div>
                             
-                            <!-- Top indicators row -->
                             <div class="z-10 flex flex-wrap gap-1 items-start">
                                 ${badgeHTML}
                             </div>
 
-                            <!-- Decorative Lo-Fi Watermark Box -->
-                            <div class="z-10 w-full flex justify-between items-end opacity-40 group-hover:opacity-80 transition-opacity">
-                                <span class="text-[9px] font-mono uppercase tracking-widest text-pink-200">SYS.REC_</span>
-                                <i class="fa-solid fa-heart-pulse text-[10px] text-pink-300"></i>
+                            <div class="z-10 w-full flex justify-between items-end opacity-40 group-hover:opacity-90 transition-all">
+                                <span class="text-[8px] font-mono uppercase tracking-widest text-pink-200">MAL_LINK ↗</span>
+                                <i class="fa-solid fa-square-arrow-up-right text-[10px] text-pink-300"></i>
                             </div>
                         </div>
 
-                        <!-- Info Strip Footer -->
-                        <div class="p-3 bg-[#130d1c]/90 flex-grow flex flex-col justify-between border-t border-pink-950/20">
+                        <div class="p-3 bg-[#150f24]/95 flex-grow flex flex-col justify-between border-t border-pink-950/20">
                             <h3 class="font-bold text-xs text-pink-100 group-hover:text-pink-300 transition-colors line-clamp-2">
                                 ${this.parsed.title}
                             </h3>
                             ${this.parsed.tag ? `<p class="text-[10px] italic text-purple-300/70 mt-1 truncate">~ ${this.parsed.tag}</p>` : ''}
                         </div>
-                    </div>
+                    </a>
                 `;
             }
         }
@@ -229,18 +218,20 @@
             const sortedManga = [...mangaList].sort();
             const sortedWatch = [...watchList].sort();
 
-            document.getElementById('anime-grid').innerHTML = sortedAnime.map(item => new AestheticMediaCard(item).render()).join('');
-            document.getElementById('manga-grid').innerHTML = sortedManga.map(item => new AestheticMediaCard(item).render()).join('');
+            document.getElementById('anime-grid').innerHTML = sortedAnime.map(item => new AestheticMediaCard(item, 'anime').render()).join('');
+            document.getElementById('manga-grid').innerHTML = sortedManga.map(item => new AestheticMediaCard(item, 'manga').render()).join('');
 
             document.getElementById('watchlist-grid').innerHTML = sortedWatch.map(item => {
                 const p = parseTitle(item);
+                const queryUrl = `https://myanimelist.net/anime.php?q=${encodeURIComponent(p.title)}`;
                 return `
-                    <div class="glass-panel rounded-xl p-3 flex items-center justify-between border border-purple-900/20 hover:border-indigo-400/30 transition-all duration-300">
-                        <span class="text-xs font-medium text-purple-200 truncate pr-2">${p.title}</span>
+                    <a href="${queryUrl}" target="_blank" rel="noopener noreferrer" 
+                       class="glass-panel rounded-xl p-3 flex items-center justify-between border border-purple-900/20 hover:border-indigo-400/40 transition-all duration-300 group cursor-pointer">
+                        <span class="text-xs font-medium text-purple-200 group-hover:text-indigo-200 truncate pr-2">${p.title}</span>
                         <span class="text-[9px] uppercase tracking-wider font-bold text-indigo-300 bg-indigo-950/60 border border-indigo-800/40 px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0">
                             <i class="fa-solid fa-moon text-[8px]"></i> Queue
                         </span>
-                    </div>
+                    </a>
                 `;
             }).join('');
         }
