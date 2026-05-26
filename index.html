@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Anime & Manga Vault</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(rgba(15, 11, 25, 0.88), rgba(26, 15, 36, 0.94)), 
+                        url('http://googleusercontent.com/image_collection/image_retrieval/15435201623793551224') no-repeat center center fixed;
+            background-size: cover;
+            color: #eae1f0;
+        }
+        /* Custom scrollbar to keep up the lo-fi vibe */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 11, 25, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffb7c5;
+            border-radius: 4px;
+        }
+        /* Frosted glass effect */
+        .glass-panel {
+            background: rgba(25, 18, 36, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 183, 197, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col tracking-wide">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-pink-900/30 bg-[#161024]/80 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl animate-bounce duration-1000">🌸</span>
+                <h1 class="text-2xl font-extrabold tracking-widest bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
+                    SAKURA VAULT
+                </h1>
+            </div>
+            <!-- Navigation Tabs -->
+            <nav class="flex gap-2 bg-[#0e0a17]/90 p-1.5 rounded-xl border border-pink-950/40">
+                <button onclick="switchTab('anime')" id="tab-anime" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all bg-gradient-to-r from-pink-400 to-purple-500 text-white shadow-md shadow-pink-950/40">
+                    Anime (<span id="count-anime">0</span>)
+                </button>
+                <button onclick="switchTab('manga')" id="tab-manga" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all text-purple-300 hover:text-white">
+                    Manga (<span id="count-manga">0</span>)
+                </button>
+                <button onclick="switchTab('watchlist')" id="tab-watchlist" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all text-purple-300 hover:text-white">
+                    Watchlist (<span id="count-watchlist">0</span>)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+        
+        <!-- Tab: Anime -->
+        <section id="content-anime" class="tab-content">
+            <div class="flex items-center gap-2 mb-6">
+                <i class="fa-solid fa-compact-disc text-pink-400 animate-spin" style="animation-duration: 6s;"></i>
+                <h2 class="text-xl font-semibold text-pink-200">Collected Tapes</h2>
+            </div>
+            <div id="anime-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- JavaScript Injects Visual Cards -->
+            </div>
+        </section>
+
+        <!-- Tab: Manga -->
+        <section id="content-manga" class="tab-content hidden">
+            <div class="flex items-center gap-2 mb-6">
+                <i class="fa-solid fa-book-open text-purple-400"></i>
+                <h2 class="text-xl font-semibold text-purple-200">Shelf Library</h2>
+            </div>
+            <div id="manga-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- JavaScript Injects Visual Cards -->
+            </div>
+        </section>
+
+        <!-- Tab: Watchlist -->
+        <section id="content-watchlist" class="tab-content hidden">
+            <div class="flex items-center gap-2 mb-6">
+                <i class="fa-regular fa-heart text-indigo-400 animate-pulse"></i>
+                <h2 class="text-xl font-semibold text-indigo-200">Future Late Nights</h2>
+            </div>
+            <div id="watchlist-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <!-- JavaScript Injects Simple Grid -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-pink-950/20 bg-[#0e0a17]/90 py-6 text-center text-xs text-purple-400/60 tracking-widest">
+        <p>• LO-FI ANIME ARCHIVE v2.0 • ☕ CHILLING IN NIGHT CITY •</p>
+    </footer>
+
+    <script>
+        // Data arrays
+        const animeList = [
+            "Pokémon", "Yo-Kai Watch", "Beyblade", "Demon Slayer", "Shimoneta", "My Dress-Up Darling", 
+            "Highschool DxD", "In Another World w/m Smartphone", "Yamada-Kun and the Seven Witches", 
+            "That Time I Got Reincarnated as a Slime", "Death Note", "KonoSuba", "JUJUTSU KAISEN", 
+            "Romantic Killer", "Toradora!", "My Love Story With Yamada-kun at Lv999", 
+            "KonoSuba: An Explosion on This Wonderful World!", "Sword Art Online", "Kaguya Sama: Love is War!", 
+            "Solo Leveling", "Horimiya", "Classroom of the Elite", "TSUKIMICHI: Moonlit Fantasy", 
+            "DARLING in the FRANXX", "MASHLE: MAGIC AND MUSCLES", "Domestic Girlfriend", 
+            "Alya Sometimes Hides Her Feelings In Russian (#3)", "JoJo’s Bizzare Adventure", "School Days", 
+            "Saiki K.", "Naruto/Shippuden", "Don’t Toy With Me Miss Nagatoro", "WIND BREAKER (awesome new anime)", 
+            "Rascal Does Not Dream of Bunny Girl Senpai", "Kaiju No. 8", "Tower of God", "CHAINSAW MAN", 
+            "Tokyo Ghoul", "(PEAK) Can a Boy-Girl Friendship Survive?", "BOCCHI THE ROCK!", 
+            "Makeine: Too Many Losing Heroines", "Tomo-chan is a Girl!", "A Couple of Cuckoos", 
+            "The Quintessential Quintuplets (#1)", "More Than a Married Couple, But Not Lovers (peak)", 
+            "The Angel Next Door Spoils Me Rotten", "Date a Live (#3)", "Clevatess (good new anime)", 
+            "The Fragrant Flower Blooms With Dignity", "One Punch Man", "Reign of the Seven Spellblades", 
+            "Tougen Anki", "Hokkaido Gals Are Super Adorable", "Sakamoto Days", "Frieren (#1)", 
+            "Cosmic Princess Kaguya", "Hana-kimi", "You can never be in a romcom with your childhood friends!", 
+            "Call of the Night (#3)", "Black Clover", "The ice guy and his cool female colleague (#2)", 
+            "Pseudo-Harem (#1)", "My Awkward Senpai (#3)", "Tune In to the Midnight Heart (#3)", 
+            "Uzaki-chan Wants to Hang Out! (#1)"
+        ];
+
+        const mangaList = [
+            "I’m in Love with the Older Girl Next Door", "Haimiya-senpai is cute and scary (#1)", 
+            "I made friends with the second prettiest girl in class (#1)", "Black Clover (#2)", 
+            "The ice guy and his cool female colleague (#2)", "Can’t Gals Be Kind to Otaku? (#2)", 
+            "The Case Study of Vanitas (#3)", "Cyberpunk Edgerunners (#1)", "Uzaki-chan Wants to Hang Out! (#1)"
+        ];
+
+        const watchList = [
+            "Finish Wandance", "Boarding School Juliet", "Blue Box", "I have a crush at work", 
+            "Blue Spring Ride", "Kagurabachi", "Azumanga Daioh", "Dealing With Mikadono Sisters is a Breeze", 
+            "Chained Soldier", "Red River", "Akame ga Kill", "Oshi no Ko", "Finish gurren lagann", 
+            "No Game No Life", "Lord of Mysteries", "Love is Hard for Otaku", "Golden Time", 
+            "Hajame no ippo", "FINISH DARLING IN THE FRANXX", "Future Diary", "Your Lie in April", 
+            "Plastic Memories", "PERSONA5", "Bakemonogatari", "I Want to Eat Your Pancreas", 
+            "Danganronpa", "My youth romantic comedy is wrong as I expected SNAFU", "Attack on Titan", 
+            "Giji Harem", "Kakegurui", "Evangelion", "Mushoku Tensei: Jobless Reincarnation", 
+            "Code Geass", "STEINS;GATE"
+        ];
+
+        function parseTitle(itemString) {
+            let cleanTitle = itemString;
+            let rank = null;
+            let isPeak = false;
+            let customTag = null;
+
+            const rankMatch = itemString.match(/\(#(\d+)\)/);
+            if (rankMatch) { rank = rankMatch[1]; cleanTitle = cleanTitle.replace(rankMatch[0], ''); }
+            if (itemString.toLowerCase().includes('peak')) { isPeak = true; cleanTitle = cleanTitle.replace(/\([Pp][Ee][Aa][Kk]\)/g, '').replace(/\(peak\)/g, ''); }
+            const tagMatch = cleanTitle.match(/\(([^)]+)\)/);
+            if (tagMatch && !tagMatch[0].includes('#')) { customTag = tagMatch[1]; cleanTitle = cleanTitle.replace(tagMatch[0], ''); }
+
+            return { title: cleanTitle.trim(), rank: rank, isPeak: isPeak, tag: customTag };
+        }
+
+        // Helper to find aesthetic placeholder matching the media style dynamically
+        function generateCoverPlaceholder(title) {
+            // Generates a stylized graphic canvas with a unique background color blend based on string signature
+            let hash = 0;
+            for (let i = 0; i < title.length; i++) { hash = title.charCodeAt(i) + ((hash << 5) - hash); }
+            const hue1 = Math.abs(hash % 360);
+            const hue2 = (hue1 + 40) % 360;
+            return `linear-gradient(135deg, hsl(${hue1}, 45%, 25%), hsl(${hue2}, 50%, 15%))`;
+        }
+
+        class AestheticMediaCard {
+            constructor(item) {
+                this.parsed = parseTitle(item);
+                this.bgStyle = generateCoverPlaceholder(this.parsed.title);
+            }
+
+            render() {
+                let badgeHTML = '';
+                if (this.parsed.rank) {
+                    let rColor = this.parsed.rank === '1' ? 'from-amber-300 to-yellow-400 text-purple-950' : 
+                                 this.parsed.rank === '2' ? 'from-slate-200 to-slate-400 text-purple-950' : 
+                                 'from-amber-600 to-orange-500 text-white';
+                    badgeHTML = `<span class="bg-gradient-to-r ${rColor} text-[9px] font-black px-1.5 py-0.5 rounded shadow shadow-black/50 tracking-wider">#${this.parsed.rank}</span>`;
+                }
+                if (this.parsed.isPeak) {
+                    badgeHTML += `<span class="bg-gradient-to-r from-rose-500 to-red-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow shadow-black/50 tracking-wider">PEAK</span>`;
+                }
+
+                return `
+                    <div class="glass-panel rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-pink-900/10 hover:border-pink-300/40 group flex flex-col h-full">
+                        <!-- Poster Image Frame Area -->
+                        <div class="aspect-[3/4] w-full flex flex-col justify-between p-3 relative relative overflow-hidden" style="background: ${this.bgStyle};">
+                            <!-- Overlay filter mapping lo-fi shadow layout -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#140e1f] via-transparent to-black/30 pointer-events-none"></div>
+                            
+                            <!-- Top indicators row -->
+                            <div class="z-10 flex flex-wrap gap-1 items-start">
+                                ${badgeHTML}
+                            </div>
+
+                            <!-- Decorative Lo-Fi Watermark Box -->
+                            <div class="z-10 w-full flex justify-between items-end opacity-40 group-hover:opacity-80 transition-opacity">
+                                <span class="text-[9px] font-mono uppercase tracking-widest text-pink-200">SYS.REC_</span>
+                                <i class="fa-solid fa-heart-pulse text-[10px] text-pink-300"></i>
+                            </div>
+                        </div>
+
+                        <!-- Info Strip Footer -->
+                        <div class="p-3 bg-[#130d1c]/90 flex-grow flex flex-col justify-between border-t border-pink-950/20">
+                            <h3 class="font-bold text-xs text-pink-100 group-hover:text-pink-300 transition-colors line-clamp-2">
+                                ${this.parsed.title}
+                            </h3>
+                            ${this.parsed.tag ? `<p class="text-[10px] italic text-purple-300/70 mt-1 truncate">~ ${this.parsed.tag}</p>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function initDashboard() {
+            document.getElementById('count-anime').innerText = animeList.length;
+            document.getElementById('count-manga').innerText = mangaList.length;
+            document.getElementById('count-watchlist').innerText = watchList.length;
+
+            const sortedAnime = [...animeList].sort();
+            const sortedManga = [...mangaList].sort();
+            const sortedWatch = [...watchList].sort();
+
+            document.getElementById('anime-grid').innerHTML = sortedAnime.map(item => new AestheticMediaCard(item).render()).join('');
+            document.getElementById('manga-grid').innerHTML = sortedManga.map(item => new AestheticMediaCard(item).render()).join('');
+
+            document.getElementById('watchlist-grid').innerHTML = sortedWatch.map(item => {
+                const p = parseTitle(item);
+                return `
+                    <div class="glass-panel rounded-xl p-3 flex items-center justify-between border border-purple-900/20 hover:border-indigo-400/30 transition-all duration-300">
+                        <span class="text-xs font-medium text-purple-200 truncate pr-2">${p.title}</span>
+                        <span class="text-[9px] uppercase tracking-wider font-bold text-indigo-300 bg-indigo-950/60 border border-indigo-800/40 px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-moon text-[8px]"></i> Queue
+                        </span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-pink-400', 'to-purple-500', 'text-white', 'shadow-md', 'shadow-pink-950/40');
+                btn.classList.add('text-purple-300', 'hover:text-white');
+            });
+            
+            const actBtn = document.getElementById(`tab-${tabName}`);
+            actBtn.classList.add('bg-gradient-to-r', 'from-pink-400', 'to-purple-500', 'text-white', 'shadow-md', 'shadow-pink-950/40');
+            actBtn.classList.remove('text-purple-300', 'hover:text-white');
+        }
+
+        window.onload = initDashboard;
+    </script>
+</body>
+</html>
