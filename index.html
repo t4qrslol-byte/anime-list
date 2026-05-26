@@ -88,51 +88,126 @@
     </main>
 
     <footer class="border-t border-pink-950/20 bg-[#0e0a17]/90 py-6 text-center text-xs text-purple-400/60 tracking-widest">
-        <p>• LO-FI ANIME ARCHIVE v3.0 • ☕ TAP ANY ENTRY TO SEARCH ON MAL •</p>
+        <p>• LO-FI ANIME ARCHIVE v4.0 • ☕ TAP ANY ENTRY TO SEARCH ON MAL •</p>
     </footer>
 
     <script>
-        // Media lists (Cyberpunk updated to Anime category)
+        // ALPHABETICALLY SORTED LISTS (Cyberpunk moved to Anime)
         const animeList = [
-            "Pokémon", "Yo-Kai Watch", "Beyblade", "Demon Slayer", "Shimoneta", "My Dress-Up Darling", 
-            "Highschool DxD", "In Another World w/m Smartphone", "Yamada-Kun and the Seven Witches", 
-            "That Time I Got Reincarnated as a Slime", "Death Note", "KonoSuba", "JUJUTSU KAISEN", 
-            "Romantic Killer", "Toradora!", "My Love Story With Yamada-kun at Lv999", 
-            "KonoSuba: An Explosion on This Wonderful World!", "Sword Art Online", "Kaguya Sama: Love is War!", 
-            "Solo Leveling", "Horimiya", "Classroom of the Elite", "TSUKIMICHI: Moonlit Fantasy", 
-            "DARLING in the FRANXX", "MASHLE: MAGIC AND MUSCLES", "Domestic Girlfriend", 
-            "Alya Sometimes Hides Her Feelings In Russian (#3)", "JoJo’s Bizzare Adventure", "School Days", 
-            "Saiki K.", "Naruto/Shippuden", "Don’t Toy With Me Miss Nagatoro", "WIND BREAKER (awesome new anime)", 
-            "Rascal Does Not Dream of Bunny Girl Senpai", "Kaiju No. 8", "Tower of God", "CHAINSAW MAN", 
-            "Tokyo Ghoul", "(PEAK) Can a Boy-Girl Friendship Survive?", "BOCCHI THE ROCK!", 
-            "Makeine: Too Many Losing Heroines", "Tomo-chan is a Girl!", "A Couple of Cuckoos", 
-            "The Quintessential Quintuplets (#1)", "More Than a Married Couple, But Not Lovers (peak)", 
-            "The Angel Next Door Spoils Me Rotten", "Date a Live (#3)", "Clevatess (good new anime)", 
-            "The Fragrant Flower Blooms With Dignity", "One Punch Man", "Reign of the Seven Spellblades", 
-            "Tougen Anki", "Hokkaido Gals Are Super Adorable", "Sakamoto Days", "Frieren (#1)", 
-            "Cosmic Princess Kaguya", "Hana-kimi", "You can never be in a romcom with your childhood friends!", 
-            "Call of the Night (#3)", "Black Clover", "The ice guy and his cool female colleague (#2)", 
-            "Pseudo-Harem (#1)", "My Awkward Senpai (#3)", "Tune In to the Midnight Heart (#3)", 
-            "Uzaki-chan Wants to Hang Out! (#1)", "Cyberpunk Edgerunners (#1)"
+            "(PEAK) Can a Boy-Girl Friendship Survive?",
+            "A Couple of Cuckoos",
+            "Alya Sometimes Hides Her Feelings In Russian (#3)",
+            "Beyblade",
+            "Black Clover",
+            "BOCCHI THE ROCK!",
+            "Call of the Night (#3)",
+            "CHAINSAW MAN",
+            "Classroom of the Elite",
+            "Clevatess (good new anime)",
+            "Cosmic Princess Kaguya",
+            "Cyberpunk Edgerunners (#1)",
+            "DARLING in the FRANXX",
+            "Date a Live (#3)",
+            "Death Note",
+            "Demon Slayer",
+            "Domestic Girlfriend",
+            "Don’t Toy With Me Miss Nagatoro",
+            "Frieren (#1)",
+            "Hana-kimi",
+            "Highschool DxD",
+            "Hokkaido Gals Are Super Adorable",
+            "Horimiya",
+            "In Another World w/m Smartphone",
+            "JoJo’s Bizzare Adventure",
+            "JUJUTSU KAISEN",
+            "Kaiju No. 8",
+            "Kaguya Sama: Love is War!",
+            "KonoSuba",
+            "KonoSuba: An Explosion on This Wonderful World!",
+            "Makeine: Too Many Losing Heroines",
+            "MASHLE: MAGIC AND MUSCLES",
+            "More Than a Married Couple, But Not Lovers (peak)",
+            "My Awkward Senpai (#3)",
+            "My Dress-Up Darling",
+            "My Love Story With Yamada-kun at Lv999",
+            "Naruto/Shippuden",
+            "One Punch Man",
+            "Pokémon",
+            "Pseudo-Harem (#1)",
+            "Rascal Does Not Dream of Bunny Girl Senpai",
+            "Reign of the Seven Spellblades",
+            "Romantic Killer",
+            "Sakamoto Days",
+            "Saiki K.",
+            "School Days",
+            "Shimoneta",
+            "Solo Leveling",
+            "Sword Art Online",
+            "That Time I Got Reincarnated as a Slime",
+            "The Angel Next Door Spoils Me Rotten",
+            "The Fragrant Flower Blooms With Dignity",
+            "The ice guy and his cool female colleague (#2)",
+            "The Quintessential Quintuplets (#1)",
+            "Tokyo Ghoul",
+            "Tomo-chan is a Girl!",
+            "Toradora!",
+            "Tougen Anki",
+            "TSUKIMICHI: Moonlit Fantasy",
+            "Tune In to the Midnight Heart (#3)",
+            "Tower of God",
+            "Uzaki-chan Wants to Hang Out! (#1)",
+            "WIND BREAKER (awesome new anime)",
+            "Yamada-Kun and the Seven Witches",
+            "Yo-Kai Watch",
+            "You can never be in a romcom with your childhood friends!"
         ];
 
         const mangaList = [
-            "I’m in Love with the Older Girl Next Door", "Haimiya-senpai is cute and scary (#1)", 
-            "I made friends with the second prettiest girl in class (#1)", "Black Clover (#2)", 
-            "The ice guy and his cool female colleague (#2)", "Can’t Gals Be Kind to Otaku? (#2)", 
-            "The Case Study of Vanitas (#3)", "Uzaki-chan Wants to Hang Out! (#1)"
+            "Black Clover (#2)",
+            "Can’t Gals Be Kind to Otaku? (#2)",
+            "Haimiya-senpai is cute and scary (#1)",
+            "I made friends with the second prettiest girl in class (#1)",
+            "I’m in Love with the Older Girl Next Door",
+            "The Case Study of Vanitas (#3)",
+            "The ice guy and his cool female colleague (#2)",
+            "Uzaki-chan Wants to Hang Out! (#1)"
         ];
 
         const watchList = [
-            "Finish Wandance", "Boarding School Juliet", "Blue Box", "I have a crush at work", 
-            "Blue Spring Ride", "Kagurabachi", "Azumanga Daioh", "Dealing With Mikadono Sisters is a Breeze", 
-            "Chained Soldier", "Red River", "Akame ga Kill", "Oshi no Ko", "Finish gurren lagann", 
-            "No Game No Life", "Lord of Mysteries", "Love is Hard for Otaku", "Golden Time", 
-            "Hajame no ippo", "FINISH DARLING IN THE FRANXX", "Future Diary", "Your Lie in April", 
-            "Plastic Memories", "PERSONA5", "Bakemonogatari", "I Want to Eat Your Pancreas", 
-            "Danganronpa", "My youth romantic comedy is wrong as I expected SNAFU", "Attack on Titan", 
-            "Giji Harem", "Kakegurui", "Evangelion", "Mushoku Tensei: Jobless Reincarnation", 
-            "Code Geass", "STEINS;GATE"
+            "Akame ga Kill",
+            "Attack on Titan",
+            "Azumanga Daioh",
+            "Bakemonogatari",
+            "Blue Box",
+            "Blue Spring Ride",
+            "Boarding School Juliet",
+            "Chained Soldier",
+            "Code Geass",
+            "Danganronpa",
+            "Dealing With Mikadono Sisters is a Breeze",
+            "Evangelion",
+            "FINISH DARLING IN THE FRANXX",
+            "Finish gurren lagann",
+            "Finish Wandance",
+            "Future Diary",
+            "Giji Harem",
+            "Golden Time",
+            "Hajame no ippo",
+            "I have a crush at work",
+            "I Want to Eat Your Pancreas",
+            "Kagurabachi",
+            "Kakegurui",
+            "Lord of Mysteries",
+            "Love is Hard for Otaku",
+            "Mushoku Tensei: Jobless Reincarnation",
+            "My youth romantic comedy is wrong as I expected SNAFU",
+            "No Game No Life",
+            "Oshi no Ko",
+            "PERSONA5",
+            "Plastic Memories",
+            "Red River",
+            "STEINS;GATE",
+            "Your Lie in April"
         ];
 
         function parseTitle(itemString) {
@@ -150,7 +225,6 @@
             return { title: cleanTitle.trim(), rank: rank, isPeak: isPeak, tag: customTag };
         }
 
-        // Generates an elegant, lightweight aesthetic abstract cover block directly using browser CSS styles
         function getBackgroundStyle(title) {
             let hash = 0;
             for (let i = 0; i < title.length; i++) { hash = title.charCodeAt(i) + ((hash << 5) - hash); }
@@ -197,14 +271,10 @@
             document.getElementById('count-manga').innerText = mangaList.length;
             document.getElementById('count-watchlist').innerText = watchList.length;
 
-            const sortedAnime = [...animeList].sort();
-            const sortedManga = [...mangaList].sort();
-            const sortedWatch = [...watchList].sort();
+            document.getElementById('anime-grid').innerHTML = animeList.map(item => createMediaCard(item, 'anime')).join('');
+            document.getElementById('manga-grid').innerHTML = mangaList.map(item => createMediaCard(item, 'manga')).join('');
 
-            document.getElementById('anime-grid').innerHTML = sortedAnime.map(item => createMediaCard(item, 'anime')).join('');
-            document.getElementById('manga-grid').innerHTML = sortedManga.map(item => createMediaCard(item, 'manga')).join('');
-
-            document.getElementById('watchlist-grid').innerHTML = sortedWatch.map(item => {
+            document.getElementById('watchlist-grid').innerHTML = watchList.map(item => {
                 const data = parseTitle(item);
                 const url = `https://myanimelist.net/anime.php?q=${encodeURIComponent(data.title)}`;
                 return `
